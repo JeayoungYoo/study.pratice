@@ -15,10 +15,40 @@ public class Student /*extends AbstractSample */ /*FinalSample*/{
 	private char gender;//성별
 	private double score;//학점
 	private String address;//주소
-	private int phone;//전화번호
+	private String phone;//전화번호
 	private String professor;//지도교수
 	
 	
+	public void setSno(int sno) {
+		this.sno = sno;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public void setMajor(String major) {
+		this.major = major;
+	}
+	
+	public void setGender(char gender) {
+		this.gender = gender;
+	}
+	
+	public void setScore(double score) {
+		this.score = score;
+	}
+	
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	
+	public void setProfessor(String professor) {
+		this.professor = professor;
+	}
 	//생성자함수(Constructor)
 	//기본(default) 생성자
 	public Student(){
@@ -33,17 +63,42 @@ public class Student /*extends AbstractSample */ /*FinalSample*/{
 		
 	}
 	
+/*	public int calculator(){
+		int sum=0;
+		return sum= (sum+score);
+	}*/
+	
 	//멤버함수(Method)
 	//접근제한자 [static]반환자료형 메소드이름(자료형 매개변수){  처리내용}
-	public void setSno(int no){
-		System.out.println("this 가 받은 객체의 주소 : " + this.hashCode());
-		this.sno = no;
+
+	public int getSno() {
+		return sno;
 	}
-	
+	public String getName() {
+		return name;
+	}
+	public String getMajor() {
+		return major;
+	}
+	public char getGender() {
+		return gender;
+	}
+	public double getScore() {
+		return score;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public String getProfessor() {
+		return professor;
+	}
 	public void printInformaiton(){
 		System.out.println(this.sno + ", " + this.name + ", " + this.major + ", " + this.gender + ", " + this.score + ", " + this.phone + ", " + this.address + ", " + this.professor );
 	}
-		public Student (int sno, String name, String major, char gender, double score, String address, int phone, String professor){
+		public Student (int sno, String name, String major, char gender, double score, String address, String phone, String professor){
 		this.sno = sno;
 		this.name = name;
 		this.major = major;

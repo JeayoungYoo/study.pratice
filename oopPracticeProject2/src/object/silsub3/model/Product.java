@@ -17,6 +17,46 @@ public class Product {
 		this.tex = tex;
 	}
 	
+	public String getProductID() {
+		return productID;
+	}
+
+	public void setProductID(String productID) {
+		this.productID = productID;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+	public String getProductArea() {
+		return productArea;
+	}
+
+	public void setProductArea(String productArea) {
+		this.productArea = productArea;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public double getTex() {
+		return tex;
+	}
+
+	public void setTex(double tex) {
+		this.tex = tex;
+	}
+
 	public void information(){
 		System.out.println(this.productID + "\t" + this.productName + "\t" + this.productArea + "\t" + this.price + "\t" + this.tex);
 	}
