@@ -1,0 +1,56 @@
+package oop.encapsulation.sample;
+
+//public 클래스임
+public class Student /*extends AbstractSample */ /*FinalSample*/{
+	//클래스(class) : 구조체 + 보안기능
+	//구조체 : 자료형이 다른 변수들의 묶음(배열처럼 연속 할당됨)
+	//보안기능(접근제한 기능) : 클래스 밖에서 클래스 안에 있는
+	//멤버변수(필드: Field)에 접근을 못 하게 하는 것이 원칙임
+	//캡슐화(Encapsulation) : 모든 필드를 private 지정함
+	
+	//필드 선언 : 접근제한자 자료형 변수명 [= 초기값];
+	private int sno;//학번
+	private String name;//이름
+	private String major;//전공
+	private char gender;//성별
+	private double score;//학점
+	private String address;//주소
+	private int phone;//전화번호
+	private String professor;//지도교수
+	
+	
+	//생성자함수(Constructor)
+	//기본(default) 생성자
+	public Student(){
+		System.out.println("this 가 받은 객체의 주소 : " + this.hashCode());
+	}
+	//매개변수가 있는 생성자 : 오버로딩(overloading) 가능함
+	public Student(int sno, String name, String major){
+		this.sno = sno;
+		this.name = name;
+		this.major = major;
+		System.out.println("this 가 받은 객체의 주소 : " + this.hashCode());
+		
+	}
+	
+	//멤버함수(Method)
+	//접근제한자 [static]반환자료형 메소드이름(자료형 매개변수){  처리내용}
+	public void setSno(int no){
+		System.out.println("this 가 받은 객체의 주소 : " + this.hashCode());
+		this.sno = no;
+	}
+	
+	public void printInformaiton(){
+		System.out.println(this.sno + ", " + this.name + ", " + this.major + ", " + this.gender + ", " + this.score + ", " + this.phone + ", " + this.address + ", " + this.professor );
+	}
+		public Student (int sno, String name, String major, char gender, double score, String address, int phone, String professor){
+		this.sno = sno;
+		this.name = name;
+		this.major = major;
+		this.gender = gender;
+		this.score = score;
+		this.address = address;
+		this.phone = phone;
+		this.professor = professor;
+	}
+}
