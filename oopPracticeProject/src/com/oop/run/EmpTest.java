@@ -5,6 +5,8 @@ import java.util.Scanner;
 import com.oop.model.dto.Employee;
 
 public class EmpTest {
+	static Scanner sc = new Scanner(System.in);
+	
 	public static void main(String[] args) {
 		mainMenu();
 	}
@@ -12,7 +14,7 @@ public class EmpTest {
 	public static void mainMenu() {
 
 		Employee e = new Employee();
-		char flag;
+		
 
 		do {
 			System.out.println("1. 새 사원 정보 입력");
@@ -21,9 +23,9 @@ public class EmpTest {
 			System.out.println("4. 사원정보 출력");
 			System.out.println("9. 끝내기");
 
-			int num = new Scanner(System.in).nextInt();
+			
 
-			switch (num) {
+			switch (sc.nextInt()) {
 			case 1:
 				e.empInput();
 				break;
@@ -37,9 +39,8 @@ public class EmpTest {
 				break;
 			case 9:
 				System.out.println("정말로 종료하시겠습니까? (y/n) : ");
-				flag = new Scanner(System.in).next().charAt(0);
-				if (flag != 'y'){
-					break;
+				if (sc.next().toUpperCase().charAt(0) == 'Y'){
+					return;
 				}
 			default:
 				return;
@@ -49,8 +50,6 @@ public class EmpTest {
 	}
 
 	public static void modifyMenu(Employee e) {
-		Scanner sc = new Scanner(System.in);
-
 		do {
 			System.out.println("1. 이름 변경");
 			System.out.println("2. 급여 변경");
@@ -58,9 +57,9 @@ public class EmpTest {
 			System.out.println("4. 직급 변경");
 			System.out.println("5. 이전 메뉴로 이동");
 
-			int num = sc.nextInt();
+			
 
-			switch (num) {
+			switch (sc.nextInt()) {
 			case 1:
 				System.out.println("이름을 입력해주세요");
 				e.setEmpName(sc.next());
