@@ -5,7 +5,6 @@ import java.util.Scanner;
 import com.oop.model.dto.Employee;
 
 public class EmpTest {
-
 	public static void main(String[] args) {
 		mainMenu();
 	}
@@ -31,20 +30,21 @@ public class EmpTest {
 			case 2:
 				modifyMenu(e);
 				break;
-			case 3: Employee e1 = new Employee();
+			case 3: e = new Employee();
 				break;
 			case 4:
 				e.empOutput();
 				break;
 			case 9:
-				System.out.println("정말로 종료하시겠습니까? (y/n)");
+				System.out.println("정말로 종료하시겠습니까? (y/n) : ");
 				flag = new Scanner(System.in).next().charAt(0);
-				if (flag == 'y')
+				if (flag != 'y'){
 					break;
+				}
 			default:
-				continue;
+				return;
 			}
-		} while (true);
+		} while(true);
 
 	}
 
