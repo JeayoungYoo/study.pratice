@@ -84,7 +84,7 @@ public class MemberMenu {
 				mManager.printMember(index);
 				break;
 			case 3:
-				System.out.print("이름 입력 : ");
+				System.out.print("E-mail 입력 : ");
 				index = mManager.searchMemberEmail(sc.next());
 				if (index == -1) {
 					System.out.println("없는 E-mail 입니다.");

@@ -7,15 +7,16 @@ import member.model.dto.Member;
 public class MemberManager {
 	
 	public final int SIZE = 10;
-	public Member[] member = new Member[SIZE];
+	public Member[] member;
 	public int cnt=0;
 	Member temp = new Member();
 	
-	Scanner sc = new Scanner(System.in);
+	Scanner sc;
 	
 			
 	public MemberManager () {
-		
+	      member = new Member[SIZE];
+	      sc = new Scanner(System.in);
 	}
 	
 	public void memberInput() {
@@ -44,22 +45,13 @@ public class MemberManager {
 		
 	}
 	
-//	public void deleteMember() {
-//		System.out.print("삭제하실 ID : ");
-//		for (int i=0; i<member.length; i++){
-//			if (sc.next().equals(member[i].getId())){
-//				member[i] = new Member();
-//			}
-//			else
-//				continue;
-//		}
-//	}
-	
 	public void deleteMember() {
+		String input;
 		System.out.print("삭제하실 ID : ");
-		for (int i = 0; i < member.length; i++) {
-			if (member[i].getId().equals(sc.next())){
-				for (int j=0; j<member.length-1; j++)
+		input = sc.next();
+		for (int i = 0; i < cnt; i++) {
+			if (member[i].getId().equals(input)){
+				for (int j=i; j<cnt-1; j++)
 					member[j] = member[j+1];
 				break;
 				
@@ -77,7 +69,7 @@ public class MemberManager {
 
 	public int searchMemberId(String id) {
 		int index = -1;
-		for (int i=0; i<member.length; i++){
+		for (int i=0; i<cnt; i++){
 			if(member[i].getId().equals(id)){
 				index = i;
 				break;
@@ -88,7 +80,7 @@ public class MemberManager {
 
 	public int searchMemberName(String name) {
 		int index = -1;
-		for (int i=0; i<member.length; i++){
+		for (int i=0; i<cnt; i++){
 			if (member[i].getName().equals(name)){
 				index = i;
 				break;
@@ -100,7 +92,7 @@ public class MemberManager {
 
 	public int searchMemberEmail(String email) {
 		int index = -1;
-		for (int i=0; i<member.length; i++){
+		for (int i=0; i<cnt; i++){
 			if (member[i].getName().equals(email)){
 				index = i;
 				break;
