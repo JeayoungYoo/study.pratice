@@ -26,11 +26,10 @@ public class TestSelectSort {
 	}
 	
 	public void bubleSort(int[] ar){
-		int temp;
 		for(int i = 0; i<ar.length-1; i++){
 			for(int j=0; j<ar.length-2; j++){
 				if (ar[j]>ar[j+1]){
-					swap(ar, i, j);
+					swap(ar, j, j+1);
 				}
 			}
 		}
