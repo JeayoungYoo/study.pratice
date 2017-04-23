@@ -141,6 +141,7 @@ public class MemberMenu {
 					break;
 				}
 				mManager.printMember(index);
+				System.out.print("변경 할 암호 : ");
 				mManager.member[index].setPassword(sc.next());
 				break;
 
@@ -152,6 +153,7 @@ public class MemberMenu {
 					break;
 				}
 				mManager.printMember(index);
+				System.out.print("변경 할 E-mail : ");
 				mManager.member[index].setEmail(sc.next());
 				break;
 			case 3:
@@ -162,6 +164,7 @@ public class MemberMenu {
 					break;
 				}
 				mManager.printMember(index);
+				System.out.print("변경 할 나이 : ");
 				mManager.member[index].setAge(sc.nextInt());
 				break;
 			case 9:

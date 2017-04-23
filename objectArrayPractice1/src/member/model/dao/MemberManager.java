@@ -9,9 +9,9 @@ public class MemberManager {
 	public final int SIZE = 10;
 	public Member[] member;
 	public int cnt=0;
-	Member temp = new Member();
+	private Member temp = new Member();
 	
-	Scanner sc;
+	private Scanner sc;
 	
 			
 	public MemberManager () {
@@ -28,7 +28,7 @@ public class MemberManager {
 			member[cnt].setId(sc.next());
 			System.out.print("이름 입력 : ");
 			member[cnt].setName(sc.next());
-			System.out.println("password 입력 : ");
+			System.out.print("password 입력 : ");
 			member[cnt].setPassword(sc.next());
 			System.out.print("E-mail 입력 : ");
 			member[cnt].setEmail(sc.next());
@@ -159,6 +159,8 @@ public class MemberManager {
 		for (int i=0; i<cnt-1; i++){
 			for(int j=i+1; j<cnt; j++)
 				if(member[i].getGender()<member[j].getGender()){
+
+//					swap(member, i, j);
 					temp = member[i];
 					member[i] = member[j];
 					member[j] = temp;
@@ -168,8 +170,8 @@ public class MemberManager {
 	}
 
 //	private void swap(int[] member, int i, int j) {
-//		int temp = member[i];
-//		member[i] = member[j];
-//		member[j] = temp;
+//		temp = this.member[i];
+//		this.member[i] = this.member[j];
+//		this.member[j] = temp;
 //	}
-	}
+}
