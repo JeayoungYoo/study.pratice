@@ -8,22 +8,23 @@ public class Test01 {
 		Scanner sc = new Scanner(System.in);
 		String input;
 		double grade1 = 0, grade2 = 0, grade3 = 0;
-		int[] a = new int[5];
+		String[] a;
+		int[] b;
 
 		System.out.print("점수를 입력하세요");
 		input = sc.nextLine();
-		String[] b = input.split(" ");
+		a=input.split(" ");
 		
-		for (int i=0; i<b.length; i++){
-			if (b[i]<10||b[i]>99){
-				
-			}
+		for (int i=0; i<a.length; i++){
+			b[i]=Integer.parseInt(a[i]);
+			if (b[i]<10||b[i]>99)
+				System.out.println("다시 입력해주세요");
 		}
 		
 		
 		
 		
-		int n1 = input.indexOf(" ");
+		/*int n1 = input.indexOf(" ");
 		int n2 = input.indexOf(" ", n1 + 1);
 		int n3 = input.indexOf(" ", n2 + 1);
 		int n4 = input.indexOf(" ", n3 + 1);
@@ -58,6 +59,6 @@ public class Test01 {
 		else
 			System.out.println("다시 입력하세요");
 
-	}
+	}*/
 
 }
