@@ -3,7 +3,7 @@ package ncs.test8;
 import ncs.test7.Book;
 
 public class BookUpdate {
-	Book book;
+	private Book book;
 	
 	public BookUpdate(){}
 
@@ -12,7 +12,6 @@ public class BookUpdate {
 	}
 	
 	public Book getBookData(){
-		this.book = book;
 		return book;
 	}
 	

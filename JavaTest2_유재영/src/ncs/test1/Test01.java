@@ -7,21 +7,40 @@ public class Test01 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		String input;
-		double grade1 = 0, grade2 = 0, grade3 = 0;
-		String[] a;
-		int[] b;
+		double score=0;
+		int[] b = new int[5];
 
 		System.out.print("점수를 입력하세요");
-		input = sc.nextLine();
-		a=input.split(" ");
+		String[] a=sc.nextLine().split(" ");
+		if (a.length==5){
+			for (int i=0; i<a.length; i++){
+				b[i]=Integer.parseInt(a[i]);
+				if (b[i]<10||b[i]>99){
+					System.out.println("다시 입력해주세요");
+					return;
+				}
+			}
+			score = ((b[0]+b[1])/2*0.6) + ((b[2]+b[3])/2*0.2) + (b[4]/2*0.2);
+			
+			
+			System.out.println("평가점수 : " + score);
+			
+			if (score>=90)
+				System.out.println("Class : Gold Class");
+			else if (score>=80)
+				System.out.println("Class : Silver Class");
+			else if (score>=70)
+				System.out.println("Class : Bronze Class");
+			else
+				System.out.println("Class : Normal Class");
 		
-		for (int i=0; i<a.length; i++){
-			b[i]=Integer.parseInt(a[i]);
-			if (b[i]<10||b[i]>99)
-				System.out.println("다시 입력해주세요");
-		}
+	}
 		
+				
+	}}
+				
 		
+	
 		
 		
 		/*int n1 = input.indexOf(" ");
@@ -60,5 +79,3 @@ public class Test01 {
 			System.out.println("다시 입력하세요");
 
 	}*/
-
-}

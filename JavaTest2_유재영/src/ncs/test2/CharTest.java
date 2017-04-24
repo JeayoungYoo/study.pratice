@@ -17,10 +17,6 @@ public class CharTest {
 			j=(input.length-i)-1;
 			System.out.print(input[j]);
 		}
-		
-		
-		
-
 	}
 
 }

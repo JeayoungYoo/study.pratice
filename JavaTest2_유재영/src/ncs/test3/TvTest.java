@@ -30,12 +30,6 @@ public class TvTest {
 				
 		}
 		
-/*		for (int i=0; i<tv.length; i++){
-			for (int j= i+1; i<tv.length; j++){
-				if (tv[i].getPrice()>tv[j].getPrice()){
-					maxindex = i;
-					minindex = j;
-			}*/
 		System.out.println("가격이 가장 비싼 제품 : " + tv[maxindex].getName());
 		System.out.println("가격이 가장 저렴한 제품 : " + tv[minindex].getName());
 	}

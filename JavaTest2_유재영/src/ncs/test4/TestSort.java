@@ -13,7 +13,9 @@ public class TestSort {
 			else
 				a[i] = b;
 				
-			System.out.print(a[i] + ", ");
+			System.out.print(a[i]);
+			if (i!=a.length-1)
+				System.out.print(", ");
 		}
 		System.out.println();
 		
@@ -28,8 +30,11 @@ public class TestSort {
 			}
 		}
 		
-		for (int i=0; i<a.length; i++)
-			System.out.print(a[i] + ", ");
+		for (int i=0; i<a.length; i++){
+			System.out.print(a[i]);
+			if (i!=a.length-1)
+				System.out.print(", ");
+		}
 		System.out.println();
 	}
 
