@@ -169,8 +169,8 @@ public class MemberManager {
 		
 	}
 
-//	private void swap(int[] member, int i, int j) {
-//		temp = this.member[i];
+//	private void swap(Member[] member, int i, int j) {
+//		temp = member[i];
 //		this.member[i] = this.member[j];
 //		this.member[j] = temp;
 //	}
