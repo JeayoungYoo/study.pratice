@@ -9,5 +9,4 @@ public class CharTest {
 			System.out.print(input[i]);
 		}
 	}
-
 }
