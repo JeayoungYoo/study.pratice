@@ -30,7 +30,10 @@ public class Rectangle extends Point{
 	
 	@Override
 	public void draw(){
-		System.out.println("x좌표 = " + x + "\t" + "y좌표 = " + y + "\n" + "사각형의면적 = " + width*height + "\n" + "사각형의둘레" + 2*(width+height));
+		super.draw();
+		System.out.println("가로 = " + width + "\t세로 = " + height);
+		System.out.println("사각형의면적 = " + (int)Math.round(width*height*10)/10.0);
+		System.out.println("사각형의둘레 = " + (int)Math.round(2*(width+height)*10)/10.0);
 	}
 
 }

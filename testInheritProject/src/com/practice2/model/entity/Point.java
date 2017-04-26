@@ -28,6 +28,6 @@ public class Point {
 	}
 	
 	public void draw(){
-		System.out.println(x+", "+y);
+		System.out.println("xÁÂÇ¥ : " + x + "\t yÁÂÇ¥ : " +y);
 	}
 }

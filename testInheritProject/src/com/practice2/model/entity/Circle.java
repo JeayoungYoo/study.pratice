@@ -12,7 +12,9 @@ public class Circle extends Point{
 	
 	@Override
 	public void draw(){
-		System.out.println("면적 = " + (int)Math.round((Math.PI * Math.pow(radius, 2))*10)/10);
-		System.out.println("둘레 = " + (int)Math.round((2*Math.PI*radius)*10)/10);
+		super.draw();
+		System.out.println("반지름 = " + radius );
+		System.out.println("면적 = " + (int)Math.round(Math.PI * Math.pow(radius, 2)*10)/10.0);
+		System.out.println("둘레 = " + (int)Math.round(2*Math.PI*radius*10)/10.0);
 	}
 }
