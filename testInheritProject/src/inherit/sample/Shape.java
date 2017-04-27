@@ -1,6 +1,9 @@
 package inherit.sample;
 
-public class Shape {
+
+//미완성 메소드를 멤버로 가진 클래스는 반드시 class 앞에 abstract 키워드를 써야 함
+//추상(미완성) 클래스를 객체 생성 못 함.
+public abstract class Shape {
 	private String name;	//이름
 	private double area;	//면적
 	private double perimeter;	//둘레
@@ -40,9 +43,13 @@ public class Shape {
 		this.perimeter = perimeter;
 	}
 	
-	public void calculator(){
-		
-	}
+	//public void calculator(){
+	//미완성된 메솓 : abstract method
+	//메소드의 헤드(선언부)만 존재하고, 몸통(구현부)가 없음.
+	
+	public abstract void calculator();
+	
+	
 	
 	void information() throws NullPointerException, ArithmeticException{
 		System.out.println("도형이름 : " + name);
@@ -68,19 +75,12 @@ public class Shape {
 		return result;
 	}
 
-	@Override
+/*	@Override
 	protected Object clone() throws CloneNotSupportedException {
 		Shape s = new Shape();
 		s.name = this.name;
 		s.area = this.area;
 		s.perimeter = this.perimeter;
 		return s;
-	}
-	
-	/*public Shape copyShape() throws CloneNotSupportedException{
-		return (Shape)this.clone();
 	}*/
-	
-
-	
 }

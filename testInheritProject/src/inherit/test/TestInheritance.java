@@ -51,7 +51,8 @@ public class TestInheritance {
 	//java.lang.Object는 모든 클래스들의 부모이다.
 	//Object 가 제공하는 메소드는 사용 가능하다
 	
-	public void test3(){
+/*	public void test3(){
+		//추상클래스는 객체 생성 못 함
 		Shape s = new Shape("도형");
 		Shape s2 = s;  // 주소 복사
 		
@@ -118,7 +119,7 @@ public class TestInheritance {
 			System.out.println("두 객체안의 모든 필드값이 같다");
 		else
 			System.out.println("두 객체안의 필드값이 다르다");
-	}
+	}*/
 	
 	//equals() test
 	public void test7(){

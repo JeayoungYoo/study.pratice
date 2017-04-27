@@ -14,8 +14,8 @@ public class Main {
 		Rectangle[] r = new Rectangle[3];
 		
 		for (int i=0; i<c.length; i++){
-			c[i] = new Circle(ran.nextInt(10), ran.nextInt(10), ran.nextInt(10));
-			r[i] = new Rectangle(ran.nextInt(10), ran.nextInt(10), ran.nextInt(10), ran.nextInt(10));
+			c[i] = new Circle(ran.nextInt(10)+1, ran.nextInt(10)+1, ran.nextInt(10)+1);
+			r[i] = new Rectangle(ran.nextInt(10)+1, ran.nextInt(10)+1, ran.nextInt(10)+1, ran.nextInt(10)+1);
 		}
 		for (int i=0; i<c.length; i++){
 			c[i].draw();
@@ -30,9 +30,9 @@ public class Main {
 		
 		for (int i=0; i<5; i++){
 			if(i%2==0)
-				p[i] = new Circle(ran.nextInt(10), ran.nextInt(10), ran.nextInt(10));
+				p[i] = new Circle(ran.nextInt(10)+1, ran.nextInt(10)+1, ran.nextInt(10)+1);
 			else
-				p[i] = new Rectangle(ran.nextInt(10), ran.nextInt(10), ran.nextInt(10), ran.nextInt(10));
+				p[i] = new Rectangle(ran.nextInt(10)+1, ran.nextInt(10)+1, ran.nextInt(10)+1, ran.nextInt(10)+1);
 			p[i].draw();
 			System.out.println();
 		}

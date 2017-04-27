@@ -38,6 +38,8 @@ public class Circle extends Shape{
 //		System.out.println("반지름 : "+ radius);
 	}
 	
+	//추상메소드를 상속받은 후손클래스는 반드시 부모의 추상메소드를 완성시켜야 함
+	//메소드 사용 강제화가 목적임.
 	@Override
 	public void calculator(){
 		setArea(Math.PI * Math.pow(radius, 2));
