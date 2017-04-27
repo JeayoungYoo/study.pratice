@@ -28,8 +28,8 @@ public class PayTableTest {
 		System.out.println("-------------------------------------------------------------------------------------");
 		
 		for (int i=0; i<3; i++){
-			((PayTable)pt[i]).calc();
-			((PayTable)pt[i]).out();
+			/*((PayTable)pt[i]).calc();
+			((PayTable)pt[i]).out();*/
 			((Calculate)pt[i]).calc();
 			((Output)pt[i]).out();
 			
