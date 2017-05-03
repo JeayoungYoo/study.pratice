@@ -21,7 +21,7 @@ public class PayTable extends Salary implements Calculate, Output {
 			super.setFamilyP(super.getFamily()*20000);
 		else
 			super.setFamilyP(60000);
-		
+	
 		super.setOvertimeP(super.getOvertime()*5000);
 		super.setTax((long) (super.getPay()*0.1));
 		super.setIncenP((long) (super.getIncentive()*super.getPay()));
