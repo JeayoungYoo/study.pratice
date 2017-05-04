@@ -5,24 +5,20 @@ public class TestWork2 {
 	public static void main(String[] args) {
 		String input = "J a v a  P r o g r a m ";
 		System.out.println(input);
+		System.out.println(input.replace(" ", ""));
 		
 		String[] as = input.split(" ");
-		char[] ac = new char[(as.length)];
-		int cnt=0;
+		char[] ac = input.replace(" ", "").toCharArray();
 		
-		for (int i=0; i<as.length; i++){
-			ac[i] = as[i].charAt(0);
-			cnt++;
+		System.out.println("토큰 처리 후 문자의 갯수 : " + ac.length);
+		
+		input = "";
+		for (int i=0; i<ac.length; i++){
 			System.out.print(ac[i]);
+			input += ac[i];
 		}
-		
-//		for (int i=0; i<arrC.length; i++){
-//			
-//		}
-		
-		
-		
-
-	}
+		System.out.println();
+		System.out.println(input);
+		}
 
 }
