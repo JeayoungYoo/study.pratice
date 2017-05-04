@@ -13,8 +13,8 @@ public class StringTest {
 			date[i] = Double.parseDouble(st[i]);
 			sum += date[i];
 		}
-		System.out.println("«’∞Ë : " + (int)Math.round(sum*1000)/1000.0);
-		System.out.println("∆Ú±’ : " + (int)Math.round(sum/date.length*1000)/1000.0);
+		System.out.printf("«’∞Ë : %.3f",sum);
+		System.out.printf("\n∆Ú±’ : %.3f",sum/st.length);
 	}
 
 }
