@@ -13,8 +13,8 @@ public class StringTest {
 			date[i] = Double.parseDouble(st[i]);
 			sum += date[i];
 		}
-		System.out.println("ÇÕ°è : " + Math.round(sum*1000)/1000.0);
-		System.out.println("Æò±Õ : " + sum/date.length);
+		System.out.println("ÇÕ°è : " + (int)Math.round(sum*1000)/1000.0);
+		System.out.println("Æò±Õ : " + (int)Math.round(sum/date.length*1000)/1000.0);
 	}
 
 }
