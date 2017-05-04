@@ -1,5 +1,5 @@
 package ncs.test10;
 
 public interface Bonus {
-	public void incentive(int pay);
+	public abstract void incentive(int pay);
 }
