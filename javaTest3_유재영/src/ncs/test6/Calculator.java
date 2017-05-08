@@ -13,6 +13,8 @@ public class Calculator {
 		}
 		else 
 			throw new InvalidException("입력 값에 오류가 있습니다.");
+		
+		
 	}
 
 
