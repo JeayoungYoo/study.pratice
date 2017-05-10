@@ -19,28 +19,25 @@ public class BookManager{
 	}
 	
 	public void fileSave(){
-			Book[] book = new Book[5];
-			try(ObjectOutputStream objOut = new ObjectOutputStream(new FileOutputStream("books.dat"))) {
+		Book[] books = new Book[]{
+				new Book("자바의정석", "김을동", 30000, new GregorianCalendar(1991, 1, 1), 0.5),
+				new Book("하악하악", "문재인", 45000, new GregorianCalendar(1992, 2, 2), 0.2),
+				new Book("물은 답을 알고있다", "아이작", 30000, new GregorianCalendar(1993, 3, 3), 0.1),
+				new Book("열혈강의", "김삿갓", 15000, new GregorianCalendar(1994, 4, 4), 0.3),
+				new Book("빅피처", "데이비드", 10000, new GregorianCalendar(1995, 5, 5), 0.05)};
+		
+		try(ObjectOutputStream objOut = 
+				new ObjectOutputStream(new FileOutputStream("books.dat"))){
 			
-			objOut.writeObject(book[0] = new Book("자바의정석", "김을동", 30000, new GregorianCalendar(1991, 1, 1), 0.5));
+			for(Book b : books)
+				objOut.writeObject(b);
 			
-			objOut.writeObject(book[1] = new Book("하악하악", "문재인", 45000, new GregorianCalendar(1992, 2, 2), 0.2));
-			
-			objOut.writeObject(book[2] = new Book("물은 답을 알고있다", "아이작", 30000, new GregorianCalendar(1993, 3, 3), 0.1));
-			
-			objOut.writeObject(book[3] = new Book("열혈강의", "김삿갓", 15000, new GregorianCalendar(1994, 4, 4), 0.3));
-			
-			objOut.writeObject(book[4] = new Book("빅피처", "데이비드", 10000, new GregorianCalendar(1995, 5, 5), 0.05));
-			
-/*			for(Book b : books)
-				objOut.writeObject(b);*/
-			
-
-		} catch (Exception e) {
+			System.out.println("books.dat 에 저장 완료!");
+		}catch(IOException e){
 			e.printStackTrace();
 		}
+		
 	}
-	
 	public void fileRead(){
 
 		try(ObjectInputStream objin = new ObjectInputStream(new FileInputStream("books.dat"))) {
