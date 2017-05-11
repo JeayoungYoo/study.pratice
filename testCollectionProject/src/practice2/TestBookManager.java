@@ -34,7 +34,7 @@ public class TestBookManager {
 				break;
 			case 4:
 				System.out.print("검색하실 책 제목 입력 : ");
-				bm.searchBook(inputBookTitle());
+				bm.printBook(bm.searchBook(inputBookTitle()));
 				break;
 			case 5:
 				bm.displayAll();
@@ -47,7 +47,6 @@ public class TestBookManager {
 	}
 
 	public static Book inputBook() {
-		Book book;
 		String bNo;
 		int category;
 		String title;
@@ -55,14 +54,14 @@ public class TestBookManager {
 
 		System.out.print("도서번호를 입력하세요 : ");
 		bNo = sc.next();
-		System.out.print("도서분류코드 입력 : ");
+		System.out.print("도서분류코드 입력\n(1.인문 /2.자연과학 /3.의료 /4.기타) : ");
 		category = sc.nextInt();
 		System.out.print("책 제목 : ");
-		title = sc.next();
+		title = sc.nextLine()+sc.nextLine();
 		System.out.print("저자 : ");
-		author = sc.next();
+		author = sc.nextLine()+sc.nextLine();
 
-		return book = new Book(bNo, category, title, author);
+		return new Book(bNo, category, title, author);
 
 	}
 	public static String inputBookTitle(){

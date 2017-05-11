@@ -23,22 +23,36 @@ public class BookManager {
 	}
 	
 	public int searchBook(String bTitle){
-		int temp = -1;
-		for (int i=0; i<bookList.size(); i++){
-//			if (bTitle.equals(((Book) bookList).getTitle()))
-		}
-		return temp;
-	}
+	      int index = -1;
+	      for (int i=0; i<bookList.size(); i++){
+	         if (bTitle.equals(((Book)this.bookList.get(i)).getTitle())) {
+	            return i;
+	         }
+	      }
+	      return index;
+	   }
 	
 	public void printBook(int index){
-		System.out.println(bookList.get(index));
+		System.out.println(bookList.get(index).toString());
 	}
 	
 	public void displayAll(){
-		System.out.println(bookList);
+		System.out.println(bookList.toString());
 	}
-	
 	public Book[] sortedBookList(){
+	      bookList.sort(new AscCategory());
+	      return (Book[]) bookList.toArray(new Book[0]);
+	   }
+	   
+	   public void printBookList(Book[] br){
+	      //Object[] objArr = bookList.toArray();
+	      //for (Object obj : objArr)
+	      //   System.out.println(objArr);
+	      for (Book b : br) {
+	         System.out.println(b.toString());
+	      }
+	   }
+	/*public Book[] sortedBookList(){
 		bookList.sort(new AscCategory());
 		Book[] book = (Book[]) bookList.toArray();
 		return book;
@@ -48,5 +62,5 @@ public class BookManager {
 		Object[] objArr = bookList.toArray();
 		for (Object obj : objArr)
 			System.out.println(objArr);
-	}
+	}*/
 }

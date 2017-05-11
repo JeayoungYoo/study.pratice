@@ -43,7 +43,7 @@ public class Book implements Serializable{
 	}
 	@Override
 	public String toString() {
-		return bNo + ", " + category + ", " + title + ", " + author;
+		return bNo + ", " + category + ", " + title + ", " + author + "\n";
 	}
 	
 	
