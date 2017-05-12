@@ -1,0 +1,6 @@
+#jdbc driver file
+#Fri May 12 20:45:03 KST 2017
+user=student
+password=student
+url=jdbc\:oracle\:thin\:@localhost\:1521\:xe
+driver=oracle.jdbc.driver.OracleDriver

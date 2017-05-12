@@ -11,7 +11,7 @@ public class BookManager {
 	}
 	
 	public BookManager(ArrayList bookList) {
-		this.bookList = bookList;
+		this.bookList = new ArrayList(bookList);
 	}
 	
 	public void addBook(Book book){
