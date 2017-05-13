@@ -8,43 +8,37 @@ public class TestProperties {
 
 	public static void main(String[] args) {
 		TestProperties tp = new TestProperties();
-		tp.printConsole(readFile());
+		Student[] st = tp.readFile();
+		tp.printConsole(st);
+		tp.saveXMLFile(st);
 	}
 
-	public static Student[] readFile() {
-		HashMap hm = new HashMap();
-		FileReader fr;
+	public Student[] readFile() {
 		Properties prop = new Properties();
+		
 		try {
-			prop.load(fr = new FileReader("score.txt"));
+			prop.load(new FileReader("score.txt"));
 
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		Student[] st = new Student[prop.size()];
-		Iterator iter = prop.keySet().iterator();
-		while (iter.hasNext()) {
-			hm.put(iter.next(), prop.getProperty((String)iter.next()));
-			String[] inputValue = prop.getProperty((String)iter.next()).split(",");
-
-			int i = 0;
-			st[i] = new Student();
-			st[i].setSno(Integer.parseInt(key));
-			while (true) {
-				int j = 1;
-				st[i].setSname(inputValue[j++]);
-				st[i].setKor(Integer.parseInt(inputValue[j++]));
-				st[i].setEng(Integer.parseInt(inputValue[j++]));
-				st[i].setMat(Integer.parseInt(inputValue[j]));
-				st[i].setTot(st[i].getKor() + st[i].getEng() + st[i].getMat());
-				st[i].setAvg(st[i++].getTot() / 3);
-				break;
+			Enumeration<String> keys = (Enumeration<String>) prop.propertyNames();
+			Iterator<Object> keyIter = prop.keySet().iterator();
+			Collection<Object> values = prop.values();
+			
+			Student[] st = new Student[prop.size()];
+			for (int i=0; keyIter.hasNext(); i++){
+			
+				String key = (String) keyIter.next();
+				String value = prop.getProperty(key);
+				String[] fields = value.split(",");
+				st[i] = new Student(Integer.parseInt(fields[0]), fields[1], Integer.parseInt(fields[2]), Integer.parseInt(fields[3]), Integer.parseInt(fields[4]));
 			}
-		}
-		return st;
-
+			return st;
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+			return null;
+		} 
+		
+		
 	}
 
 	public void printConsole(Student[] sr) {
@@ -64,6 +58,11 @@ public class TestProperties {
 
 	public void saveXMLFile(Student[] sr) {
 		Properties prop = new Properties();
+		for (Student st : sr) {
+			prop.setProperty(Integer.toString(st.getSno()), st.getSno() + "," + st.getSname()  + "," + st.getKor()  + "," +  st.getEng()  + "," +  st.getMat() + "," + st.getTot()  + "," +  st.getAvg());
+			
+		}
+		
 		try {
 			prop.storeToXML(new FileOutputStream("student.xml"), "score.txt");
 		} catch (IOException e) {

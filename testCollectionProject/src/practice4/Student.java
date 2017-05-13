@@ -6,14 +6,14 @@ public class Student {
 	private int kor, eng, mat, tot, avg;
 	public Student() {
 	}
-	public Student(int sno, String sname, int kor, int eng, int mat, int tot, int avg) {
+	public Student(int sno, String sname, int kor, int eng, int mat) {
 		this.sno = sno;
 		this.sname = sname;
 		this.kor = kor;
 		this.eng = eng;
 		this.mat = mat;
-		this.tot = tot;
-		this.avg = avg;
+		this.tot = kor+eng+mat;
+		this.avg = this.tot/3;
 	}
 	public int getSno() {
 		return sno;
