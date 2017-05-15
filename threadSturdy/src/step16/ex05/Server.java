@@ -11,6 +11,8 @@ import java.net.Socket;
  * 1) main 메서드의 작업을 Server 클래스의 메서드로 만들기
  * 2) MyThread가 하던 일을 Runnable 인터페이스 구현으로 대체하기
  */
+
+// 공부좀해야
 public class Server  {
   static class EchoAgent implements Runnable {
     Socket socket;
