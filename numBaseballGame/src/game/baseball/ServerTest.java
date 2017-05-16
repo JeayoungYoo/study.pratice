@@ -3,13 +3,8 @@ package game.baseball;
 import java.net.*;
 import java.io.*;
 
-public class ServerTest2 {
-	/**************
-	 * 네트워크 프로그래밍 응용 야구게임 - 서버 ********************************
-	 *
-	 * 서버에서는 쓰레드를 활용하여 다중 접속자(클라이언트)를 처리한다. 접속자들이 보내는 값을 처리하여 결과를 보내준다. 클라이언트들이
-	 * 보내온 값에 대한 처리값을 서버에서 관찰할 수 있도록 처리
-	 */
+public class ServerTest {
+
 	public static void main(String[] args) {
 
 		ServerSocket serverSocket = null;
@@ -74,7 +69,7 @@ class EchoThread extends Thread {
 
 	public void run() {
 
-		Game2 zz;
+		GameLogic gl;
 
 		try {
 			String str = "";
@@ -84,26 +79,26 @@ class EchoThread extends Thread {
 			String cnt1 = null;
 			int x, y;
 
-			zz = new Game2(); // 야구게임 클래스 객체 생성
-			zz.randomInt();
+			gl = new GameLogic(); // 야구게임 클래스 객체 생성
+			gl.randomInt();
 
 			while (!val) {
 
 				/*********************************/
 				str = br.readLine(); // 라인단위로 받아서 스트링에 저장
 
-				zz.inputUserNumber1(str); // 입력 받은 숫자를 배열에 담음.
+				gl.inputUserNumber1(str); // 입력 받은 숫자를 배열에 담음.
 
-				x = zz.getX();
-				y = zz.getY();
+				x = gl.getX();
+				y = gl.getY();
 
-				cnt = zz.getCount(); // 카운트 처리
+				cnt = gl.getCount(); // 카운트 처리
 				if (cnt < 10)
 					cnt1 = "0" + String.valueOf(cnt);
 				else
 					cnt1 = String.valueOf(cnt);
 
-				val = zz.getValue(); // 종료처리
+				val = gl.getValue(); // 종료처리
 				if (val)
 					val1 = 'T';
 				else
