@@ -5,7 +5,7 @@ import java.net.UnknownHostException;
 import java.util.Scanner;
 
 public class Test1 {
-
+	//복스바자
 	public static void main(String[] args) throws UnknownHostException {
 		Scanner sc = new Scanner(System.in);
 

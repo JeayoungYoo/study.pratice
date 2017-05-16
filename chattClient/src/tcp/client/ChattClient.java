@@ -9,7 +9,7 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class ChattClient {
-
+	// 복습하자
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		// TCP 통신 클라이언트 측 프로그램

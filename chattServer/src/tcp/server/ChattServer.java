@@ -4,7 +4,7 @@ import java.io.*;
 import java.net.*;
 
 public class ChattServer {
-
+	// 복습하자
 	public static void main(String[] args) throws IOException {
 		// TCP통신 서버측 프로그램
 		// 1. 포트번호 정하기
