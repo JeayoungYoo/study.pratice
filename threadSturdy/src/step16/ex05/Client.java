@@ -10,7 +10,7 @@ public class Client {
   public static void main(String[] args) {
     
     try (
-      Socket socket = new Socket("localhost", 8888);
+      Socket socket = new Socket("192.168.20.34", 9000);
       Scanner scanner = new Scanner(System.in);
       BufferedReader in = new BufferedReader(new InputStreamReader(
                                socket.getInputStream()));
@@ -21,7 +21,7 @@ public class Client {
       do {
         System.out.print("입력>");
         message = scanner.nextLine();
-        out.println("버나드:" + message);
+        out.println("안재성:" + message);
         result = in.readLine();
         System.out.println(result);
       } while(!message.equals("bye"));
