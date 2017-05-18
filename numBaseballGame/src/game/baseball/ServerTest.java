@@ -10,15 +10,15 @@ public class ServerTest {
 		ServerSocket serverSocket = null;
 		Socket socket = null;
 		try {
-			// 1. 서버소켓 생성
+			
 			serverSocket = new ServerSocket(9000);
 			while (true) {
-				// 2. 클라이언트의 접속요청을 대기한다.
+				
 				System.out.println("서버 접속 대기 중");
 				socket = serverSocket.accept();
 				System.out.println("클라이언트 접속함");
 
-				// 별도 쓰레드 만들어 자료 송수신하게 한다. - 여러 접속자를 처리하기 위한 쓰레드
+				
 				EchoThread echoThread = new EchoThread(socket);
 				echoThread.start();
 			}
@@ -28,7 +28,7 @@ public class ServerTest {
 			e.printStackTrace();
 		} finally {
 			try {
-				// 4. 소켓 닫기 --> 연결 끊기
+			
 				socket.close();
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -37,7 +37,7 @@ public class ServerTest {
 	}
 }
 
-// 쓰레드 클래스
+
 class EchoThread extends Thread {
 
 	Socket socket;
@@ -55,10 +55,10 @@ class EchoThread extends Thread {
 		this.socket = socket;
 		
 		try {
-			// 3. 소켓으로 부터 송수신을 위한 i/o stream 을 얻기
-			is = socket.getInputStream(); // 수신 --> read();
+			
+			is = socket.getInputStream();
 			br = new BufferedReader(new InputStreamReader(is));
-			os = socket.getOutputStream(); // 송신 --> write();
+			os = socket.getOutputStream();
 			pw = new PrintWriter(os);
 
 		} catch (IOException e) {
@@ -79,26 +79,26 @@ class EchoThread extends Thread {
 			String cnt1 = null;
 			int x, y;
 
-			gl = new GameLogic(); // 야구게임 클래스 객체 생성
+			gl = new GameLogic();
 			gl.randomInt();
 
 			while (!val) {
 
-				/*********************************/
-				str = br.readLine(); // 라인단위로 받아서 스트링에 저장
 
-				gl.inputUserNumber1(str); // 입력 받은 숫자를 배열에 담음.
+				str = br.readLine(); 
+
+				gl.inputUserNumber1(str); 
 
 				x = gl.getX();
 				y = gl.getY();
 
-				cnt = gl.getCount(); // 카운트 처리
+				cnt = gl.getCount(); 
 				if (cnt < 10)
 					cnt1 = "0" + String.valueOf(cnt);
 				else
 					cnt1 = String.valueOf(cnt);
 
-				val = gl.getValue(); // 종료처리
+				val = gl.getValue(); 
 				if (val)
 					val1 = 'T';
 				else
@@ -122,7 +122,7 @@ class EchoThread extends Thread {
 
 	public void close() {
 		try {
-			// 4. 소켓 닫기 --> 연결 끊기
+		
 			is.close();
 			br.close();
 			os.close();
