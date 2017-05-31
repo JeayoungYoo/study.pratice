@@ -1,16 +1,10 @@
 package ncs.test7;
 
-import java.awt.EventQueue;
+import java.awt.*;
+import java.awt.event.*;
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
-import javax.swing.JButton;
+import javax.swing.*;
+import javax.swing.event.*;
 
 public class ScoreFrame {
 
@@ -21,7 +15,7 @@ public class ScoreFrame {
 	private JTextField average;
 
 	public ScoreFrame() {
-		frame = new JFrame();
+		frame = new JFrame("¹®Á¦ 7");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -71,7 +65,7 @@ public class ScoreFrame {
 		JButton calcBtn = new JButton("\uACC4\uC0B0\uD558\uAE30");
 		calcBtn.setBounds(156, 138, 117, 29);
 		frame.getContentPane().add(calcBtn);
-		calcBtn.addActionListener(new ScoreFrame().new ActionHandler());
+		calcBtn.addActionListener(new ActionHandler());
 		
 		frame.setVisible(true);
 	}
@@ -81,6 +75,7 @@ public class ScoreFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			total.setText(Integer.parseInt(javaScore.getText()) + Integer.parseInt(sqlScore.getText()) + "");
+			average.setText((Integer.parseInt(javaScore.getText()) + Integer.parseInt(sqlScore.getText())) / 2 + "");
 			
 		}
 		
