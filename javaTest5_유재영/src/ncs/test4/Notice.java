@@ -1,22 +1,24 @@
 package ncs.test4;
 
+import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 
-public class Notice {
+public class Notice  implements Serializable {
 	private int no;
 	private String title;
-	private Date date;
-	private String winter;
+	private Calendar date;
+	private String writer;
 	private String content;
 	public Notice() {
 		super();
 	}
-	public Notice(int no, String title, Date date, String winter, String content) {
+	public Notice(int no, String title, Calendar date, String writer, String content) {
 		super();
 		this.no = no;
 		this.title = title;
 		this.date = date;
-		this.winter = winter;
+		this.writer = writer;
 		this.content = content;
 	}
 	public int getNo() {
@@ -31,17 +33,17 @@ public class Notice {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public Date getDate() {
+	public Calendar getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(Calendar date) {
 		this.date = date;
 	}
-	public String getWinter() {
-		return winter;
+	public String getWriter() {
+		return writer;
 	}
 	public void setWinter(String winter) {
-		this.winter = winter;
+		this.writer = winter;
 	}
 	public String getContent() {
 		return content;
@@ -51,7 +53,7 @@ public class Notice {
 	}
 	@Override
 	public String toString() {
-		return "Notice [no=" + no + ", title=" + title + ", date=" + date + ", winter=" + winter + ", content="
+		return "Notice [no=" + no + ", title=" + title + ", date=" + date + ", winter=" + writer + ", content="
 				+ content + "]";
 	}
 	
