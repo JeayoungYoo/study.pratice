@@ -5,7 +5,7 @@ import java.util.*;
 
 public class BookListTest {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException, IOException {
 		BookListTest test5 = new BookListTest();
 		ArrayList<Book> list = new ArrayList<Book>();
 		
@@ -27,30 +27,28 @@ public class BookListTest {
 		
 	}
 	
-	public void saveFile(List<Book> list){
-		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("books.dat"))) {
-			for (int i=0; i<list.size(); i++)
-				oos.writeObject((Book)list.get(i));
-			
+	public void saveFile(List<Book> list) throws FileNotFoundException, IOException {
+		String fileName = "books.dat";
+		try {
+			ObjectOutputStream objOut = new ObjectOutputStream(new FileOutputStream(fileName));
+			objOut.writeObject(list);
+			objOut.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("성공적.저장");
 	}
+
 	
 	public List<Book> loadFile() {
+		List<Book> list = null;
 		try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("books.dat"))) {
-			List<Book> list = new ArrayList<Book>();
-			while(true) {
-				list.add((Book) ois.readObject());
-				return list;
-			}
+			list = (List<Book>) ois.readObject();
 			
 			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return null;
+		return list;
 		
 	}
 	
@@ -58,6 +56,7 @@ public class BookListTest {
 		for (Book book : list) { 
 			System.out.println(book);
 			System.out.println("할인된 가격 : " + (int)(book.getPrice() - (book.getPrice()*book.getDiscountRate())));
+			
 		}
 	}
 
