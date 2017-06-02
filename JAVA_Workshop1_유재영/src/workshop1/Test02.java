@@ -3,12 +3,15 @@ package workshop1;
 public class Test02 {
 	
 	public static void main(String[] args) {
-		char[] input = args[0].toCharArray();
-		double parInput = input[0];
-		double sum=0, multi=0, avg=0;
+		double parInput = Double.parseDouble(args[0]);
+		if (parInput > 5) {
+			System.out.println("다시 입력하세요");
+		}
+		
+		double sum=0, multi=1, avg=0;
 		int cnt=0;
 		
-		for (int i=0; i<parInput; i++) {
+		for (int i=1; i<=parInput; i++) {
 			sum += i;
 			multi *= i;
 			cnt++;
