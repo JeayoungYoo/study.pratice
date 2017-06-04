@@ -4,9 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.lang.reflect.Array;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -38,7 +36,7 @@ public class NoticeTest {
 		
 //		new NoticeTest().fileSave(obArray);
 		
-		List<Notice> list = new NoticeTest().fileRead();
+		ArrayList<Notice> list = new NoticeTest().fileRead();
 		for (Notice no : list)
 			System.out.println(no);
 
@@ -46,14 +44,16 @@ public class NoticeTest {
 	
 	public void fileSave(Object[] array) {
 		try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("notice.dat"))) {
-			oos.writeObject(array);
+			for (Object object : array) {
+				oos.writeObject(object);
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public List<Notice> fileRead() {
+	public ArrayList<Notice> fileRead() {
 		List<Notice> list = null;
 		try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("notice.dat"))) {
 			list = ((List<Notice>) ois.readObject());
