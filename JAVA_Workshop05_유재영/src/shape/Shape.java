@@ -34,6 +34,4 @@ public abstract class Shape {
 	public void setColors(String colors) {
 		this.colors = colors;
 	}	
-	
-	
 }

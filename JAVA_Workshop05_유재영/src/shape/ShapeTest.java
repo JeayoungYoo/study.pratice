@@ -4,7 +4,8 @@ public class ShapeTest {
 
 	public static void main(String[] args) {
 		Shape shape[] = new Shape[6];
-		Resize re = null;
+		Resize re;
+		
 		
 		shape[0] = new Triangle(7, 5, "Blue");
 		shape[1] = new Rectangle(4, 6, "Blue");
@@ -16,10 +17,9 @@ public class ShapeTest {
 		System.out.println("기본정보");
 		for (Shape ss : shape) {
 			System.out.println(ss);
-			
+			((Resize) ss).setResize(5);
 		}
-		re.setResize(5);
-		
+	
 		
 		System.out.println("\n사이즈를 변경 후 정보");
 		for (Shape ss : shape) {
