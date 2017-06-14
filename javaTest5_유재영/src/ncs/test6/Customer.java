@@ -14,6 +14,7 @@ public class Customer extends Thread {
 		
 		for (int i=0; i<10; i++)
 			try {
+				if (data.isEmpty())
 				System.out.println(data.getValue());
 				System.out.println("get value : " + data.getValue());
 				System.out.println("값을 꺼냈습니다. value 가 비었습니다.");
