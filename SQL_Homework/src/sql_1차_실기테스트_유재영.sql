@@ -74,13 +74,15 @@ ORDER BY 2, 1;
 
 -- 9. 학과별 서울에 거주하는 교수 중 나이가 가장 적은 교수의 나이를 조회한다.
 -- 단, 나이가 적은 순으로 정렬 한다. 
-SELECT DEPARTMENT_NO 학과번호, FLOOR(MONTHS_BETWEEN(SYSDATE, TO_DATE(SUBSTR(PROFESSOR_SSN, 1, 6), 'RRMMDD'))/12) 나이
+
+
+
+SELECT DEPARTMENT_NO 학과번호, MIN((TO_CHAR(SYSDATE, 'YYYY') - 1899) - (SUBSTR(PROFESSOR_SSN, 1, 2))) 나이
 FROM (SELECT *
       FROM TB_PROFESSOR
       WHERE PROFESSOR_ADDRESS LIKE '서울%'
-      ORDER BY PROFESSOR_SSN DESC
-      )
-WHERE ROWNUM = 1;
+      ORDER BY PROFESSOR_SSN DESC)
+GROUP BY DEPARTMENT_NO;
 
 -- 10. 2005년1월1일부터 2006년12월31일까지의 기간에 입학한 학생 중 주소가 등록되지 않은 남학생의 
 -- 학과번호, 학생이름, 지도교수번호, 입학년도를 조회하시오. 입학년도를 기준으로 오름차순 정렬한다.
