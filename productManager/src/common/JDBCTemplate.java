@@ -1,9 +1,8 @@
 package common;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.*;
+import java.io.*;
 
 // singleton 디자인 패턴 적용
 // 프로그램 실행되는 동안 해당 클래스에 대한 객체가 한 개만 
@@ -12,10 +11,14 @@ import java.sql.Statement;
 public class JDBCTemplate {
 	public static Connection getConnection(){
 		Connection con = null;
+		Properties prop = new Properties();
 		
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			con = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:xe", "student", "student");
+			prop.load(new FileReader("driver.properties"));
+			Class.forName(prop.getProperty("driver"));
+			con = DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("user"), prop.getProperty("pwd"));
+			/*Class.forName("oracle.jdbc.driver.OracleDriver");
+			con = DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:xe", "student", "student");*/
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

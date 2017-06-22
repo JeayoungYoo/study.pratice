@@ -1,14 +1,16 @@
 package product.controller;
 
 import java.util.ArrayList;
+
 import product.model.dao.ProductDAO;
+import product.model.dao.ProductDAO2;
 import product.model.vo.Product;
 import product.view.ProductView;
 
 public class ProductController {
 
 	public void productInsert(Product p) {
-		int result = new ProductDAO().insertProduct(p);
+		int result = new ProductDAO2().insertProduct(p);
 		
 		if (result > 0) {
 			System.out.println(result + "행이 추가되었습니다.");
@@ -22,15 +24,15 @@ public class ProductController {
 	}
 
 	public ArrayList<Product> selectList() {
-		return new ProductDAO().selectList();
+		return new ProductDAO2().selectList();
 	}
 
 	public Product selectProduct(String pid) {
-		return new ProductDAO().selectOne(pid);
+		return new ProductDAO2().selectOne(pid);
 	}
 
 	public void updateProduct(Product p) {
-		int result = new ProductDAO().updateProduct(p.getProduct_Id(), p.getPrice());
+		int result = new ProductDAO2().updateProduct(p.getProduct_Id(), p.getPrice());
 		
 		if (result > 0) {
 			//성공
@@ -46,7 +48,7 @@ public class ProductController {
 	}
 
 	public void deleteProduct(String pid) {
-		int result = new ProductDAO().deleteProduct(pid);
+		int result = new ProductDAO2().deleteProduct(pid);
 		
 		if (result > 0) {
 			//성공

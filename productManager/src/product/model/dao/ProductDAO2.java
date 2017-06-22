@@ -1,13 +1,25 @@
 package product.model.dao;
 
 import java.sql.*;
-import java.util.ArrayList;
+import java.util.*;
+import java.io.*;
+
 import static common.JDBCTemplate.*;
 import common.JDBCTemplate;
 import product.model.vo.Product;
 
 public class ProductDAO2 {
+	private Properties prop;
+	
 	public ProductDAO2() {
+		prop = new Properties();
+		try {
+			prop.load(new FileReader("query.properties"));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public Product selectOne(String pid) {
@@ -15,7 +27,7 @@ public class ProductDAO2 {
 		Connection con = JDBCTemplate.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-
+		
 		try {
 			/*// 1. 오라클에 대한 jdbc driver 클래스 등록
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -30,7 +42,7 @@ public class ProductDAO2 {
 			 * stmt.executeQuery(query);
 			 */
 
-			String query = "select * from product where product_id = ?";
+			String query = prop.getProperty("selectOne");
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, pid);
 
@@ -70,7 +82,7 @@ public class ProductDAO2 {
 			// 3. 쿼리 실행용 객체 생성
 			stmt = con.createStatement();
 			// 4. 쿼리문 작성하고 실행하고 결과받음
-			String query = "select * from product";
+			String query = prop.getProperty("selectAll");
 			rset = stmt.executeQuery(query);
 
 			if (rset != null) {
@@ -123,7 +135,7 @@ public class ProductDAO2 {
 			 * result = stmt.executeUpdate(query);
 			 */
 
-			String query = "insert into product values (?, ?, ?, ?)";
+			String query = prop.getProperty("insert");
 
 			pstmt = con.prepareStatement(query);
 			// 쿼리문 완성
@@ -165,7 +177,7 @@ public class ProductDAO2 {
 			 * result = stmt.executeUpdate(query);
 			 */
 
-			String query = "update product set price = ?" + " where product_id = ?";
+			String query = prop.getProperty("update");
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, price);
 			pstmt.setString(2, pid);
@@ -210,7 +222,7 @@ public class ProductDAO2 {
 			 * stmt.executeUpdate(query);
 			 */
 
-			String query = "delete from product where product_id = ?";
+			String query = prop.getProperty("delete");
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, pid);
 

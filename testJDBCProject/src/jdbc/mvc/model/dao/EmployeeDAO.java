@@ -256,7 +256,7 @@ public class EmployeeDAO {
 			
 			String query = "delete from employee where emp_id = ?";
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, empId);
+			pstmt.setString(1, String.valueOf(empId));
 			result = pstmt.executeUpdate();
 			
 			
