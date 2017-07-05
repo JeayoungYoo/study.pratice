@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<header>
+	<h1>test CSS Project</h1>
+	<h1>welcome page</h1>
+</header>
+<section>
+	환영합니다.
+	웹의 세계에 오신것을 환영합니다.
+</section>
+<footer>
+	copyright@hg.org
+</footer>
+</body>
+</html>

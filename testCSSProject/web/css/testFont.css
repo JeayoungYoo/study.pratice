@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+@font-face {
+font-family: fzsong;
+src :url('../fonts/FZSong_Super.ttf') format('truetype');
+}
+
+div {
+	font-family : fzsong;
+	}
