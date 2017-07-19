@@ -34,7 +34,7 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center"><input type="submit" value="로그인">
-					&nbsp; &nbsp; 회원가입</td>
+					&nbsp; &nbsp; <a href="views/member/enroll.html">회원가입</a></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">아이디/암호가 기억나지 않는다면</td>
@@ -52,7 +52,9 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center"></td>
+				<td colspan="2" align="center">
+				<a href="/first/views/member/myinfo.jsp">내 정보보기</a>
+				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center"></td>
