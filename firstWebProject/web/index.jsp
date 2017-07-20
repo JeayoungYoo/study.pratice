@@ -10,11 +10,36 @@
 <head>
 <meta charset="UTF-8">
 <title>first</title>
+<style type="text/css">
+	form, table { float : right; }
+	ul li a {
+		display : block;
+		width : 120px;
+		height : 35px;
+		background : orange;
+	}
+	
+	ul li a:hover {
+		background : olive;		
+		color : white;
+		text-shadow : 2px 2px 5px black;
+	}
+	
+	ul li {
+		list-style : none;
+		float : left;
+		margin-right : 5px;
+		padding-top : 5px;
+		text-align : center;
+		font-size : 16pt;
+		font-weight : bold;
+		
+	}
+</style>
 </head>
 <body>
 	<header>
 		<h1>firstWebProject</h1>
-
 	</header>
 	<hr>
 	<%
@@ -61,5 +86,15 @@
 			</tr>
 		</table>
 	<% } %>
+	
+	<nav>
+		<ul>
+			<li><a href="/first/nlist">공지사항</a></li>
+			<li><a>게시판</a></li>
+			<li><a>etc</a></li>
+			<li><a>etc</a></li>			
+		</ul>	
+	</nav>
+	<hr style="clear:both;">
 </body>
 </html>
