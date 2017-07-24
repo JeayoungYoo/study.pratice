@@ -58,7 +58,7 @@
 		<% if (member.getId().equals(notice.getNoticeWriter()) == true) { %>
 		<tr>
 			<td colspan="2">
-			<a href="/first/nupView?no=<%= notice.getNoticeNo() %>">수정페이지로 이동</a> &nbsp; &nbsp;
+			<a href="/first/nupview?no=<%= notice.getNoticeNo() %>">수정페이지로 이동</a> &nbsp; &nbsp;
 			<a href="/first/ndelete?no=<%= notice.getNoticeNo() %>">삭제하기</a>
 			</td>
 		</tr>

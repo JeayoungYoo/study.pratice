@@ -123,7 +123,7 @@ public class NoticeDao {
 
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, "%||" + keyword + "||%");
+			pstmt.setString(1, "%" + keyword + "%");
 
 			rset = pstmt.executeQuery();
 

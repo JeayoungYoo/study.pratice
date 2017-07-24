@@ -26,6 +26,14 @@ public class Notice implements Serializable {
 	}
 
 
+	public Notice(int noticeNo, String noticeTitle, String noticeContent, String filePath) {
+		super();
+		this.noticeNo = noticeNo;
+		this.noticeTitle = noticeTitle;
+		this.noticeContent = noticeContent;
+		this.filePath = filePath;
+	}
+
 	public Notice(String noticeTitle, String noticeWriter, Date noticeDate, String noticeContent) {
 		super();
 		this.noticeTitle = noticeTitle;
@@ -34,6 +42,14 @@ public class Notice implements Serializable {
 		this.noticeContent = noticeContent;
 	}
 
+
+	public Notice(String noticeTitle, String noticeWriter, String noticeContent, String filePath) {
+		super();
+		this.noticeTitle = noticeTitle;
+		this.noticeWriter = noticeWriter;
+		this.noticeContent = noticeContent;
+		this.filePath = filePath;
+	}
 
 	public Notice(String noticeTitle, String noticeWriter, String noticeContent) {
 		super();
