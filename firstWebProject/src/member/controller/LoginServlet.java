@@ -48,9 +48,10 @@ public class LoginServlet extends HttpServlet {
 		
 		// 4. 전송값에 따라 성공/실패에 대한 뷰를 선택해서 응답처리함
 		if(member != null){  // 로그인 성공시
-//			System.out.println(member);
+
 			HttpSession session = request.getSession();
-//			System.out.println(session.getId());
+			// 세션 객체 자동 제거시간 설정
+			session.setMaxInactiveInterval(1800);
 			session.setAttribute("member", member);
 			response.sendRedirect("index.jsp");
 		} else { // 로그인 실패

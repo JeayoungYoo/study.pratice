@@ -18,6 +18,25 @@ public class Board {
 	public Board() {
 		super();
 	}
+	
+	
+
+
+
+	public Board(String boardTitle, String boardWriter, String boardContent, String boardOriginalFileName,
+			String boardRenameFileName) {
+		super();
+		this.boardTitle = boardTitle;
+		this.boardWriter = boardWriter;
+		this.boardContent = boardContent;
+		this.boardOriginalFileName = boardOriginalFileName;
+		this.boardRenameFileName = boardRenameFileName;
+	}
+
+
+
+
+
 	public Board(int boardNum, String boardTitle, String boardWriter, String boardContent, String boardOriginalFileName,
 			String boardRenameFileName, Date boardDate, int boardLevel, int boardReplyRef, int boardReplySeq,
 			int boardReadCount) {

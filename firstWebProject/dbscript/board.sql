@@ -79,4 +79,6 @@ DEFAULT, 15, DEFAULT, DEFAULT);
 
 COMMIT;
 
-SELECT * FROM BOARD;
+--SELECT * FROM BOARD;
+
+select rnum, t.* from (select rownum as rnum, t.* from (select * from board order by board_reply_ref desc) as t)  where rnum>=1 and rnum <=10;

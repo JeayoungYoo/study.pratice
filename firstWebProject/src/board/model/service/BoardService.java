@@ -4,6 +4,7 @@ import java.util.*;
 import java.sql.*;
 
 import board.model.vo.Board;
+
 import board.model.dao.BoardDao;
 
 import static common.JDBCTemplate.*;
@@ -13,7 +14,7 @@ public class BoardService {
 	public int getListCount() {
 		Connection con = getConnection();
 		int listCount = new BoardDao().getListCount(con);
-		
+
 		close(con);
 		return listCount;
 	}
@@ -25,4 +26,49 @@ public class BoardService {
 		return list;
 	}
 
+	public int insertBoard(Board board) {
+		Connection con = getConnection();
+		int result = new BoardDao().insertBoard(con, board);
+		if (result > 0)
+			commit(con);
+		else
+			rollback(con);
+
+		close(con);
+
+		return result;
+	}
+
+	public Board selectBoard(int boardNum) {
+		Connection con = getConnection();
+		Board b = new BoardDao().selectBoard(con, boardNum);
+		close(con);
+
+		return b;
+	}
+
+	public void addReadCount(int boardNum) {
+		Connection con = getConnection();
+		int result = new BoardDao().addReadCount(con, boardNum);
+		if (result > 0) {
+			commit(con);
+		} else {
+			rollback(con);
+		}
+		close(con);
+
+	}
+
+	public int deleteBoard(Board board) {
+		Connection con = getConnection();
+		int result = new BoardDao().deleteBoard(con, board);
+		if (result > 0)
+			commit(con);
+		else
+			rollback(con);
+
+		close(con);
+
+		return result;
+	}
 }

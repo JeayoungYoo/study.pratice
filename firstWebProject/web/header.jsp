@@ -70,7 +70,7 @@
 		<table class="login" width="250" cellpadding="0" cellspacing="0" bgcolor="yellow">
 			<tr>
 				<td><%= member.getName() %>님</td>
-				<td><a href="logout">로그아웃</a></td>
+				<td><a href="/first/logout">로그아웃</a></td>
 			</tr>
 			<tr>
 				<td></td>

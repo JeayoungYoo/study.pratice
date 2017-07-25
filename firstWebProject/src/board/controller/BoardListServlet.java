@@ -44,20 +44,21 @@ public class BoardListServlet extends HttpServlet {
 		// 전달된 페이지값 추출
 		if (request.getParameter("page") != null)
 			currentPage = Integer.parseInt(request.getParameter("page"));
-		
+		System.out.println("현재페이지 : " + currentPage);
 		BoardService bservice = new BoardService();
 		
 		// 전체 목록 갯수와 해당 페이지별 목록을 리턴받음
 		int listCount = bservice.getListCount();
 		System.out.println("조회된 목록 갯수 : " + listCount);
 		ArrayList<Board> list = bservice.selectList(currentPage, limit);
-		
+		System.out.println(list);
+		System.out.println(list.size());
 		// 총 페이지 수 계산 : 목록이 최소 1개일 때 1page로 처리하기 위해 0.9를 더함
 		int maxPage = (int)((double)listCount / limit + 0.9);
 		
 		// 현재 페이지에 보여줄 시작 페이지 수 (1, 11, 21, ...)
 		// 현재 페이지가 13page 이면 시작페이지는 11page 가 됨
-		int startPage = (((int)((double)currentPage / limit + 0.9)) - 1) * limit;
+		int startPage = (((int)((double)currentPage / limit + 0.9)) - 1) * limit + 1;
 		// 만약, 목록 아래에 보여질 페이지 갯수가 10개이면  끝 페이지 수는 20페이지가 되어야 함
 		int endPage = startPage + limit - 1;
 		if(maxPage < endPage)
