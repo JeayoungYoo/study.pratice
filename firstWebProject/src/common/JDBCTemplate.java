@@ -20,6 +20,7 @@ public class JDBCTemplate {
 			
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, id, pw);
+			con.setAutoCommit(false);
 
 		} catch (Exception e) {
 			e.printStackTrace();

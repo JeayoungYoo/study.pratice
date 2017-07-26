@@ -42,30 +42,32 @@ public class BoardDao {
 		ArrayList<Board> list = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		System.out.println("dao커런트" + currentPage);
-		String query = "SELECT * FROM (SELECT ROWNUM rnum, BOARD_NUM, BOARD_TITLE, BOARD_WRITER, "
-				+ "BOARD_CONTENT, BOARD_ORIGINAL_FILENAME, BOARD_RENAME_FILENAME, "
-				+ "BOARD_DATE, BOARD_LEVEL, BOARD_REPLY_REF, BOARD_REPLY_SEQ, "
-				+ "BOARD_READ_COUNT FROM (SELECT * FROM BOARD ORDER BY BOARD_REPLY_REF DESC)) "
-				+ "WHERE rnum >= ? AND rnum <= ?";
 
-		// String query = "SELECT t.* FROM (SELECT ROWNUM, t.* FROM (SELECT *
-		// FROM BOARD ORDER BY BOARD_REPLY_REF DESC) t) t WHERE ROWNUM >= ? AND
-		// ROWNUM <= ?";
+		/*
+		 * String query =
+		 * "SELECT * FROM (SELECT ROWNUM rnum, BOARD_NUM, BOARD_TITLE, BOARD_WRITER, "
+		 * + "BOARD_CONTENT, BOARD_ORIGINAL_FILENAME, BOARD_RENAME_FILENAME, " +
+		 * "BOARD_DATE, BOARD_LEVEL, BOARD_REPLY_REF, BOARD_REPLY_SEQ, " +
+		 * "BOARD_READ_COUNT FROM (SELECT * FROM BOARD ORDER BY BOARD_REPLY_REF DESC)) "
+		 * + "WHERE rnum >= ? AND rnum <= ?";
+		 */
+
+		String query = "SELECT T.* FROM (SELECT ROWNUM RNUM, T.* FROM "
+				+ "(SELECT * FROM BOARD ORDER BY BOARD_REF DESC, BOARD_REPLY_REF DESC, BOARD_LEVEL ASC, BOARD_REPLY_SEQ ASC) T) T WHERE RNUM >= ? AND RNUM <= ?";
 
 		int startRow = (currentPage - 1) * limit + 1;
 		int endRow = startRow + limit - 1;
-		System.out.println("dao start" + startRow + "dao end" + endRow);
+
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
 
 			rset = pstmt.executeQuery();
-			System.out.println("rset" + rset);
+
 			if (rset != null) {
 				list = new ArrayList<Board>();
-				System.out.println("list" + list);
+
 				while (rset.next()) {
 					Board b = new Board();
 					b.setBoardNum(rset.getInt("BOARD_NUM"));
@@ -76,10 +78,11 @@ public class BoardDao {
 					b.setBoardRenameFileName(rset.getString("BOARD_RENAME_FILENAME"));
 					b.setBoardDate(rset.getDate("BOARD_DATE"));
 					b.setBoardLevel(rset.getInt("BOARD_LEVEL"));
+					b.setBoardRef(rset.getInt("BOARD_REF"));
 					b.setBoardReplyRef(rset.getInt("BOARD_REPLY_REF"));
 					b.setBoardReplySeq(rset.getInt("BOARD_REPLY_SEQ"));
 					b.setBoardReadCount(rset.getInt("BOARD_READ_COUNT"));
-					System.out.println("b : " + b);
+
 					list.add(b);
 				}
 			}
@@ -99,7 +102,7 @@ public class BoardDao {
 		int result = 0;
 
 		String query = "INSERT INTO BOARD VALUES ((SELECT MAX(BOARD_NUM) FROM BOARD) + 1,"
-				+ " ?, ?, ?, ?, ?, DEFAULT, DEFAULT, (SELECT MAX(BOARD_NUM) FROM BOARD) + 1, DEFAULT, DEFAULT)";
+				+ " ?, ?, ?, ?, ?, DEFAULT, DEFAULT, (SELECT MAX(BOARD_NUM) FROM BOARD) + 1, NULL, DEFAULT, DEFAULT)";
 
 		try {
 			pstmt = con.prepareStatement(query);
@@ -141,6 +144,7 @@ public class BoardDao {
 					b.setBoardRenameFileName(rset.getString("BOARD_RENAME_FILENAME"));
 					b.setBoardDate(rset.getDate("BOARD_DATE"));
 					b.setBoardLevel(rset.getInt("BOARD_LEVEL"));
+					b.setBoardRef(rset.getInt("BOARD_REF"));
 					b.setBoardReplyRef(rset.getInt("BOARD_REPLY_REF"));
 					b.setBoardReplySeq(rset.getInt("BOARD_REPLY_SEQ"));
 					b.setBoardReadCount(rset.getInt("BOARD_READ_COUNT"));
@@ -157,17 +161,17 @@ public class BoardDao {
 	}
 
 	public int addReadCount(Connection con, int boardNum) {
-		int result = 0 ;
+		int result = 0;
 		PreparedStatement pstmt = null;
-		
+
 		String query = "UPDATE BOARD SET BOARD_READ_COUNT = BOARD_READ_COUNT + 1 WHERE BOARD_NUM = ?";
-		
+
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, boardNum);
-			
+
 			result = pstmt.executeUpdate();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -176,26 +180,17 @@ public class BoardDao {
 		return result;
 	}
 
-	public int deleteBoard(Connection con, Board board) {
+	public int deleteBoard(Connection con, int boardNum) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String query = null;
-		
-		
 
 		try {
-			if (board.getBoardLevel() == 0)
-				query = "DELETE FROM BOARD WHERE BOARD_NUM = ? ";
-			else if (board.getBoardLevel() == 1)
-				query = ;
-			else if (board.getBoardLevel() == 2)
-				query = ;
-			
-			
-			
+			query = "DELETE FROM BOARD WHERE BOARD_NUM = ?";
 			pstmt = con.prepareStatement(query);
-			
+			pstmt.setInt(1, boardNum);
 			result = pstmt.executeUpdate();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -205,4 +200,92 @@ public class BoardDao {
 		return result;
 	}
 
+	public int updateReplySeq(Connection con, Board replyB) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = "UPDATE BOARD SET BOARD_REPLY_REF = BOARD_REPLY_SEQ + 1"
+				+ " WHERE BOARD_REF = ?  AND BOARD_LEVEL = ? AND BOARD_REPLY_REF = ?";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, replyB.getBoardRef());
+			pstmt.setInt(2, replyB.getBoardLevel());
+			pstmt.setInt(3, replyB.getBoardReplyRef());
+				
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int insertReply(Board replyB, Board originB, Connection con) {
+		int result = 0;
+		PreparedStatement pstmt = null;		
+		
+		String query = null;
+		
+		if(replyB.getBoardLevel() == 1){
+			query = "insert into board values " 
+				+ "((select max(board_num) + 1 from board), "
+				+ "?, ?, ?, NULL, NULL, sysdate, ?, ?, "
+				+ "(select max(board_num) + 1 from board), " 				
+				+ "1, default)";
+		}
+		
+		if(replyB.getBoardLevel() == 2){
+			query = "insert into board values " 
+				+ "((select max(board_num) + 1 from board), "
+				+ "?, ?, ?, NULL, NULL, sysdate, ?, ?, ?, " 				
+				+ "1, default)";
+		}
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, replyB.getBoardTitle());
+			pstmt.setString(2, replyB.getBoardWriter());
+			pstmt.setString(3, replyB.getBoardContent());
+			pstmt.setInt(4, replyB.getBoardLevel());
+			pstmt.setInt(5, replyB.getBoardRef());
+			
+			if(replyB.getBoardLevel() == 2)
+				pstmt.setInt(6, replyB.getBoardReplyRef());
+			
+			result = pstmt.executeUpdate();			
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int updateBoard(Connection con, Board board) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String query = "UPDATE BOARD SET BOARD_TITLE = ?, BOARD_CONTENT = ?, BOARD_ORIGINAL_FILENAME = ?, BOARD_RENAME_FILENAME = ? WHERE BOARD_NUM = ?";
+		System.out.println("다오 업데이트 콘텐츠 : " + board.toString());
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, board.getBoardTitle());
+			pstmt.setString(2, board.getBoardContent());
+			pstmt.setString(3, board.getBoardOriginalFileName());
+			pstmt.setString(4, board.getBoardRenameFileName());
+			pstmt.setInt(5, board.getBoardNum());
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
 }

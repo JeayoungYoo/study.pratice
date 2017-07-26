@@ -61,19 +61,16 @@
 			<td>내용</td>
 			<td><%=board.getBoardContent()%>
 		</tr>
-		<%
-			if (member.getId().equals(board.getBoardWriter()) == true) {
-		%>
 		<tr>
-			<td colspan="2">
-				<%
-					if (member != null) {
-				%> <a
-				href="/first/breply?bnum=<%=board.getBoardNum()%>">[댓글]</a> &nbsp;
-				&nbsp; <%
- 	}
- %> <a href="/first/bupview?no=<%=board.getBoardNum()%>">[수정]</a>
-				&nbsp; &nbsp; <a href="/first/bdelete?no=<%=board.getBoardNum()%>">[삭제]</a>
+			<td colspan="2"><a
+				href="/first/views/board/boardReplyForm.jsp?bnum=<%=board.getBoardNum()%>&page=<%=currentPage%>">[댓글]</a>
+				&nbsp; &nbsp; <%
+			if (member.getId().equals(board.getBoardWriter()) == true) {
+		%> <%
+				
+					if (member != null) { %> <%}
+ %> <a href="/first/bupview?bnum=<%=board.getBoardNum()%>">[수정]</a> &nbsp;
+				&nbsp; <a href="/first/bdelete?bnum=<%=board.getBoardNum()%>">[삭제]</a>
 				&nbsp; &nbsp; <a href="/first/blist?page=<%=currentPage%>">[목록]</a>
 			</td>
 		</tr>

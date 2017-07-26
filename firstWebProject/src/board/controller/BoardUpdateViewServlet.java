@@ -12,17 +12,18 @@ import javax.servlet.http.HttpServletResponse;
 import board.model.service.BoardService;
 import board.model.vo.Board;
 
+
 /**
- * Servlet implementation class BoardDeleteServlet
+ * Servlet implementation class BoardUpdateViewServlet
  */
-@WebServlet("/bdelete")
-public class BoardDeleteServlet extends HttpServlet {
+@WebServlet("/bupview")
+public class BoardUpdateViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public BoardDeleteServlet() {
+	public BoardUpdateViewServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -33,23 +34,18 @@ public class BoardDeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		response.setContentType("text/html; charset=utf-8");
 
 		int boardNum = Integer.parseInt(request.getParameter("bnum"));
-		System.out.println("서블릿 bnum" + boardNum);
-		
-		BoardService bservice = new BoardService();
-		
-		int result = bservice.deleteBoard(boardNum);
 
-		if (result > 0) {
-			response.sendRedirect("/first/blist?page=1");
+		Board board = new BoardService().selectBoard(boardNum);
 
-		} else {
-			RequestDispatcher view = request.getRequestDispatcher("view");
-			request.setAttribute("message", "게시글 삭체 처리 실패!");
+		if (board != null) {
+			RequestDispatcher view = request.getRequestDispatcher("views/board/boardUpdateForm.jsp");
+			request.setAttribute("board", board);
 			view.forward(request, response);
+		} else {
+			response.sendRedirect("/first/views/board/boardError.jsp");
 		}
 	}
 

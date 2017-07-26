@@ -41,9 +41,9 @@
 <%-- 답글일 때는 들여쓰기 함 --%>
 <td>
 <% if (b.getBoardLevel() == 1) { %>
-	&nbsp;&nbsp; →
+	&nbsp;&nbsp; └
 <% } else if (b.getBoardLevel() == 2) { // if close %>
-	&nbsp;&nbsp;&nbsp;&nbsp; →
+	&nbsp;&nbsp;&nbsp;&nbsp; └
 <% } %>
 <%-- 로그인한 사용자만 상세보기할 수 있게 처리함 --%>
 <% if(member != null) { %>

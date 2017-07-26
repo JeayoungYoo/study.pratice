@@ -4,7 +4,7 @@ import java.util.*;
 import java.sql.*;
 
 import board.model.vo.Board;
-
+import notice.model.dao.NoticeDao;
 import board.model.dao.BoardDao;
 
 import static common.JDBCTemplate.*;
@@ -59,9 +59,9 @@ public class BoardService {
 
 	}
 
-	public int deleteBoard(Board board) {
+	public int deleteBoard(int boardNum) {
 		Connection con = getConnection();
-		int result = new BoardDao().deleteBoard(con, board);
+		int result = new BoardDao().deleteBoard(con, boardNum);
 		if (result > 0)
 			commit(con);
 		else
@@ -69,6 +69,46 @@ public class BoardService {
 
 		close(con);
 
+		return result;
+	}
+
+	public int insertReply(Board replyB, Board originB) {
+		Connection con = getConnection();
+		int result = new BoardDao().insertReply(originB, replyB, con);
+		
+		if (result > 0)
+			commit(con);
+		else
+			rollback(con);
+
+		close(con);
+
+		return result;
+	}
+
+	public void updateReplySeq(Board replyB) {
+		Connection con = getConnection();
+		int result = new BoardDao().updateReplySeq(con, replyB);
+		if (result > 0)
+			commit(con);
+		else
+			rollback(con);
+		close(con);
+		
+	}
+
+	public int updateBoard(Board board) {
+		
+		Connection con = getConnection();
+		int result = new BoardDao().updateBoard(con, board);
+		System.out.println("서비스 콘텐츠 : " + board.getBoardContent());
+		if (result > 0)
+			commit(con);
+		else
+			rollback(con);
+		
+		close(con);
+		
 		return result;
 	}
 }
