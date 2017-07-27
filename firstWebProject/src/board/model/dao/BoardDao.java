@@ -86,7 +86,7 @@ public class BoardDao {
 					list.add(b);
 				}
 			}
-			System.out.println(list);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -203,47 +203,43 @@ public class BoardDao {
 	public int updateReplySeq(Connection con, Board replyB) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		
+
 		String query = "UPDATE BOARD SET BOARD_REPLY_REF = BOARD_REPLY_SEQ + 1"
 				+ " WHERE BOARD_REF = ?  AND BOARD_LEVEL = ? AND BOARD_REPLY_REF = ?";
-		
+
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, replyB.getBoardRef());
 			pstmt.setInt(2, replyB.getBoardLevel());
 			pstmt.setInt(3, replyB.getBoardReplyRef());
-				
+
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
 		}
-		
+
 		return result;
 	}
 
 	public int insertReply(Board replyB, Board originB, Connection con) {
 		int result = 0;
-		PreparedStatement pstmt = null;		
-		
+		PreparedStatement pstmt = null;
+
 		String query = null;
-		
-		if(replyB.getBoardLevel() == 1){
-			query = "insert into board values " 
-				+ "((select max(board_num) + 1 from board), "
-				+ "?, ?, ?, NULL, NULL, sysdate, ?, ?, "
-				+ "(select max(board_num) + 1 from board), " 				
-				+ "1, default)";
+
+		if (replyB.getBoardLevel() == 1) {
+			query = "insert into board values " + "((select max(board_num) + 1 from board), "
+					+ "?, ?, ?, NULL, NULL, sysdate, ?, ?, " + "(select max(board_num) + 1 from board), "
+					+ "1, default)";
 		}
-		
-		if(replyB.getBoardLevel() == 2){
-			query = "insert into board values " 
-				+ "((select max(board_num) + 1 from board), "
-				+ "?, ?, ?, NULL, NULL, sysdate, ?, ?, ?, " 				
-				+ "1, default)";
+
+		if (replyB.getBoardLevel() == 2) {
+			query = "insert into board values " + "((select max(board_num) + 1 from board), "
+					+ "?, ?, ?, NULL, NULL, sysdate, ?, ?, ?, " + "1, default)";
 		}
-		
+
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, replyB.getBoardTitle());
@@ -251,18 +247,18 @@ public class BoardDao {
 			pstmt.setString(3, replyB.getBoardContent());
 			pstmt.setInt(4, replyB.getBoardLevel());
 			pstmt.setInt(5, replyB.getBoardRef());
-			
-			if(replyB.getBoardLevel() == 2)
+
+			if (replyB.getBoardLevel() == 2)
 				pstmt.setInt(6, replyB.getBoardReplyRef());
-			
-			result = pstmt.executeUpdate();			
+
+			result = pstmt.executeUpdate();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
 		}
-		
+
 		return result;
 	}
 
@@ -280,6 +276,29 @@ public class BoardDao {
 			pstmt.setString(4, board.getBoardRenameFileName());
 			pstmt.setInt(5, board.getBoardNum());
 			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+
+	public int updateReply(Connection con, Board board) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+
+		String query = "update board " + "set board_title = ?, " + "board_content = ? " + "where board_num = ?";
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, board.getBoardTitle());
+			pstmt.setString(2, board.getBoardContent());
+			pstmt.setInt(3, board.getBoardNum());
+
+			result = pstmt.executeUpdate();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

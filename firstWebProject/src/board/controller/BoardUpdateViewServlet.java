@@ -37,12 +37,14 @@ public class BoardUpdateViewServlet extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 
 		int boardNum = Integer.parseInt(request.getParameter("bnum"));
-
+		int currentPage = Integer.parseInt(request.getParameter("page"));
+		
 		Board board = new BoardService().selectBoard(boardNum);
 
 		if (board != null) {
 			RequestDispatcher view = request.getRequestDispatcher("views/board/boardUpdateForm.jsp");
 			request.setAttribute("board", board);
+			request.setAttribute("page", currentPage);
 			view.forward(request, response);
 		} else {
 			response.sendRedirect("/first/views/board/boardError.jsp");

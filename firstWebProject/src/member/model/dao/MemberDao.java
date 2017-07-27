@@ -123,4 +123,40 @@ public class MemberDao {
 
 		return result;	
 	}
+
+	public Member selectMember(Connection con, String userId) {
+		Member member = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		String query = "SELECT * FROM MEMBER WHERE ID = ?";
+
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, userId);
+			
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				member = new Member();
+				member.setId(userId);
+				member.setPasswd(rset.getString("USERPWD"));
+				member.setName(rset.getString("NAME"));
+				member.setEmail(rset.getString("EMAIL"));
+				member.setGender(rset.getString("GENDER"));
+				member.setAge(rset.getInt("AGE"));
+				member.setPhone(rset.getString("PHONE"));
+				member.setAddress(rset.getString("ADDRESS"));
+				member.setEnroll_date(rset.getDate("ENROLL_DATE"));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return member;
+	}
 }

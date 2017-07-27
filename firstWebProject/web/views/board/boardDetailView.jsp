@@ -69,7 +69,7 @@
 		%> <%
 				
 					if (member != null) { %> <%}
- %> <a href="/first/bupview?bnum=<%=board.getBoardNum()%>">[수정]</a> &nbsp;
+ %> <a href="/first/bupview?bnum=<%=board.getBoardNum()%>&page=<%=currentPage%>">[수정]</a> &nbsp;
 				&nbsp; <a href="/first/bdelete?bnum=<%=board.getBoardNum()%>">[삭제]</a>
 				&nbsp; &nbsp; <a href="/first/blist?page=<%=currentPage%>">[목록]</a>
 			</td>

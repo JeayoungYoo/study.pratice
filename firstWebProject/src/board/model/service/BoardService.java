@@ -101,7 +101,7 @@ public class BoardService {
 		
 		Connection con = getConnection();
 		int result = new BoardDao().updateBoard(con, board);
-		System.out.println("서비스 콘텐츠 : " + board.getBoardContent());
+		
 		if (result > 0)
 			commit(con);
 		else
@@ -109,6 +109,17 @@ public class BoardService {
 		
 		close(con);
 		
+		return result;
+	}
+
+	public int updateReply(Board board) {
+		Connection con = getConnection();
+		int result = new BoardDao().updateReply(con, board);
+		if(result > 0)
+			commit(con);
+		else
+			rollback(con);
+		close(con);
 		return result;
 	}
 }

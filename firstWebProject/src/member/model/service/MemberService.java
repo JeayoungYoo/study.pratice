@@ -62,4 +62,12 @@ public class MemberService {
 		return result;
 	}
 
+	public Member selectMember(String userId) {
+		Connection con = getConnection();
+		Member member = new MemberDao().selectMember(con, userId);
+		close(con);
+
+		return member;
+	}
+
 }

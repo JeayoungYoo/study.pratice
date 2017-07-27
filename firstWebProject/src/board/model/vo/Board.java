@@ -30,6 +30,30 @@ public class Board {
 		this.boardWriter = boardWriter;
 		this.boardContent = boardContent;
 	}
+	
+	
+
+
+
+	public Board(int boardNum, String boardTitle, String boardWriter, String boardContent, String boardOriginalFileName,
+			String boardRenameFileName) {
+		super();
+		this.boardNum = boardNum;
+		this.boardTitle = boardTitle;
+		this.boardWriter = boardWriter;
+		this.boardContent = boardContent;
+		this.boardOriginalFileName = boardOriginalFileName;
+		this.boardRenameFileName = boardRenameFileName;
+	}
+
+
+
+	public Board(int boardNum, String boardTitle, String boardContent) {
+		super();
+		this.boardNum = boardNum;
+		this.boardTitle = boardTitle;
+		this.boardContent = boardContent;
+	}
 
 
 
