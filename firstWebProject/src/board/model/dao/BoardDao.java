@@ -86,7 +86,7 @@ public class BoardDao {
 					list.add(b);
 				}
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -306,5 +306,47 @@ public class BoardDao {
 		}
 
 		return result;
+	}
+
+	public ArrayList<Board> selectList(Connection con) {
+		ArrayList<Board> list = null;
+		Statement stmt = null;
+		ResultSet rset = null;
+		String query = "SELECT * FROM (SELECT * FROM BOARD ORDER BY BOARD_READ_COUNT DESC) WHERE BOARD_LEVEL = 0 AND ROWNUM < 6";
+
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+
+			if (rset != null) {
+				list = new ArrayList<Board>();
+
+				while (rset.next()) {
+					Board b = new Board();
+					b.setBoardNum(rset.getInt("BOARD_NUM"));
+					b.setBoardTitle(rset.getString("BOARD_TITLE"));
+					b.setBoardWriter(rset.getString("BOARD_WRITER"));
+					b.setBoardContent(rset.getString("BOARD_CONTENT"));
+					b.setBoardOriginalFileName(rset.getString("BOARD_ORIGINAL_FILENAME"));
+					b.setBoardRenameFileName(rset.getString("BOARD_RENAME_FILENAME"));
+					b.setBoardDate(rset.getDate("BOARD_DATE"));
+					b.setBoardLevel(rset.getInt("BOARD_LEVEL"));
+					b.setBoardRef(rset.getInt("BOARD_REF"));
+					b.setBoardReplyRef(rset.getInt("BOARD_REPLY_REF"));
+					b.setBoardReplySeq(rset.getInt("BOARD_REPLY_SEQ"));
+					b.setBoardReadCount(rset.getInt("BOARD_READ_COUNT"));
+
+					list.add(b);
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+
+		return list;
 	}
 }

@@ -36,9 +36,11 @@ public class BoardDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html; charset=utf-8");
-
+		
 		int boardNum = Integer.parseInt(request.getParameter("bnum"));
 		int currentPage = Integer.parseInt(request.getParameter("page"));
+		System.out.println("디테일 : " + boardNum + ", " + currentPage);
+		
 		new BoardService().addReadCount(boardNum);
 
 		Board board = new BoardService().selectBoard(boardNum);

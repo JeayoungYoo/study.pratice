@@ -35,18 +35,17 @@
 				<td><input type="text" name="bwriter" readonly
 					value="<%=member.getId()%>"></td>
 			</tr>
-			
+
 			<% if (b.getBoardLevel() == 0) { %>
 			<tr>
 				<td>첨부파일</td>
 				<td>
 					<%
 						if (b.getBoardOriginalFileName() == null) {
-					%> <input type="file"
-					name="bfile"> <%
+					%> <input type="file" name="bfile"> <%
  	} else {
  %> <%=b.getBoardOriginalFileName()%>
-					
+
 					<div id="addFile">
 						<input type="file" name="bfile">
 					</div> <%

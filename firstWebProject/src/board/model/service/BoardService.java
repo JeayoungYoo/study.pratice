@@ -122,4 +122,11 @@ public class BoardService {
 		close(con);
 		return result;
 	}
+
+	public ArrayList<Board> selectList() {
+		Connection con = getConnection();
+		ArrayList<Board> list = new BoardDao().selectList(con);
+		close(con);
+		return list;
+	}
 }

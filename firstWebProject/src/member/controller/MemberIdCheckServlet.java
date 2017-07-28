@@ -1,6 +1,8 @@
 package member.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,13 +40,19 @@ public class MemberIdCheckServlet extends HttpServlet {
 		
 		String userId = request.getParameter("userid");
 		
-		Member m = new MemberService().selectMember(userId);
+		int result = new MemberService().selectMember(userId);
 		
-		if (m != null) {
-			response.getWriter().append("1");
+		PrintWriter clientOut = response.getWriter();
+		
+		if (result != 1) {
+			clientOut.append("1");
+			clientOut.flush();
 		} else {
-			response.getWriter().append("2");
+			clientOut.append("2");
+			clientOut.flush();
 		}
+		clientOut.close();
+		
 	}
 
 	/**

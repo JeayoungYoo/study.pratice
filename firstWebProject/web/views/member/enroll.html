@@ -12,16 +12,18 @@
 				data : { userid : $('#userid').val()},
 				dataType : "text",
 				type : "post",
-				success : function(data) {
-					if(data == 1) {
+				success : function(value) {
+					if(value == 1) {
 						alert("아이디가 중복 되었습니다.")
+						$('#userid').select();
 					} else {
 						alert("사용할 수 있는 아이디입니다.")
+						$('#username').focus();
 					}
 						
 				},
-				error : function(data) {
-					alert("서블렛이 실패");
+				error : function(value) {
+					alert("에러" + value);
 				}
 			});
 			
@@ -43,7 +45,7 @@
 				</tr>
 				<tr>
 					<td>이 름</td>
-					<td><input type="text" name="name"></td>
+					<td><input type="text" name="name" id="username"></td>
 				</tr>
 
 				<tr>
