@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="member.model.vo.Member" %>    
-<%
-	Member member = (Member)session.getAttribute("member");
-%>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,15 +29,10 @@
 </form>
 <br><br>
 <p align="center">
+
+
 <a href="/second/index.jsp">시작페이지로 이동</a> &nbsp;
 <a href="/second/nlist">목록보기로 이동</a>
 </p>
 </body>
 </html>
-
-
-
-
-
-
-

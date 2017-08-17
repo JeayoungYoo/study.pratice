@@ -34,7 +34,7 @@ public class BoardListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 게시글 페이지별 조회 처리용 컨트롤러
 		response.setContentType("text/html; charset=utf-8");
-		
+		System.out.println("가가");
 		//페이지 값 처리용
 		int currentPage = 1;
 		//한 페이지당 출력할 목록 갯수
@@ -73,12 +73,13 @@ public class BoardListServlet extends HttpServlet {
 			request.setAttribute("startPage", startPage);
 			request.setAttribute("endPage", endPage);
 			request.setAttribute("listCount", listCount);
-			
+			System.out.println("나나");
 			view.forward(request, response);
 		}else{
 			view = request.getRequestDispatcher("views/board/boardError.jsp");
 			request.setAttribute("message", "게시글 페이지별 조회 실패");
 			view.forward(request, response);
+			System.out.println("다다");
 		}
 	}
 
