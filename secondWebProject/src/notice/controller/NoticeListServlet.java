@@ -44,7 +44,7 @@ public class NoticeListServlet extends HttpServlet {
 			request.setAttribute("list", list);
 			view.forward(request, response);
 		}else{
-			response.sendRedirect("/first/views/notice/noticeError.jsp");
+			response.sendRedirect("/second/views/notice/noticeError.jsp");
 		}
 	}
 

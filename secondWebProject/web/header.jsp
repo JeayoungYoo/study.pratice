@@ -9,7 +9,7 @@
 <title>First</title>
 <style type="text/css">
 	.login { float : right; }
-	ul li a {
+	ul li a {/
 		display : block;
 		width : 120px;
 		height : 35px;
@@ -62,7 +62,7 @@
 	<td><a href="${ logout }">로그아웃</a></td></tr>
 	<tr><td></td><td></td></tr>
 	<tr><td colspan="2" align="center">
-	<c:url var="myinfo" value="views/member/myinfo.jsp"></c:url>
+	<c:url var="myinfo" value="/views/member/myinfo.jsp"></c:url>
 	<a href="${ myinfo }">내 정보보기</a>	
 	</td></tr>
 	<tr><td colspan="2" align="center"></td></tr>

@@ -78,14 +78,14 @@
 					<a href="${ blist }">[이전]</a> &nbsp;
 	</c:if> <%-- 페이지 숫자 보여주기 --%> <c:forEach var="p" begin="${ startPage }"
 					end="${ endPage }">
-					<c:if test="${ p eq currentPage }">
+					<c:if test="${ p == currentPage }">
 						<font color="red" size="4"><b>[${ p }] </b></font>
 					</c:if>
-					<c:if test="${ not p eq currentPage }">
+					<c:if test="${ p != currentPage }">
 						<c:url var="blist" value="/blist">
 							<c:param name="page" value="${ p }" />
 						</c:url>
-						<a href="blist">${ p }</a>
+						<a href="${ blist }">${ p }</a>
 					</c:if>
 				</c:forEach> <c:if test="${ currentPage >= maxPage }">[다음]</c:if> <c:if
 					test="${ currentPage < maxPage }">

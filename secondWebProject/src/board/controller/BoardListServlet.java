@@ -73,13 +73,11 @@ public class BoardListServlet extends HttpServlet {
 			request.setAttribute("startPage", startPage);
 			request.setAttribute("endPage", endPage);
 			request.setAttribute("listCount", listCount);
-			System.out.println("나나");
 			view.forward(request, response);
 		}else{
 			view = request.getRequestDispatcher("views/board/boardError.jsp");
 			request.setAttribute("message", "게시글 페이지별 조회 실패");
 			view.forward(request, response);
-			System.out.println("다다");
 		}
 	}
 
