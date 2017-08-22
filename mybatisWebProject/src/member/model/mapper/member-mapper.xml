@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC
+"-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Member">
+
+	<resultMap id="resultMember" type="Member">
+		<id property="id" column="id" />
+		<result property="passwd" column="passwd" />
+		<result property="name" column="name" />
+		<result property="email" column="email" />
+		<result property="gender" column="gender" />
+		<result property="age" column="age" />
+		<result property="phone" column="phone" />
+		<result property="address" column="address" />
+		<result property="enrollDate" column="enroll_date" />
+	</resultMap>
+
+	<select id="loginCheck" parameterType="Member" resultType="Member"
+		resultMap="resultMember">
+		SELECT * FROM MEMBER WHERE ID = #{id} AND PASSWD = #{passwd}
+	</select>
+	
+	<insert id="insertMember" parameterType="Member">
+		insert into member values (#{id}, #{passwd}, #{name}, #{email}, #{gender}, #{age}, #{phone}, #{address}, default)
+	</insert>
+	
+	<update id="updateMember" parameterType="Member">
+		update member 
+		set passwd = #{passwd}, 
+		email = #{email}, 
+		age = #{age}, 
+		phone = #{phone}, 
+		address = #{address} 
+		where id = #{id}
+	</update>
+	
+	<delete id="deleteMember" parameterType="string">
+		delete from member where id = #{id}
+	</delete>
+	
+	<select id="countMember" parameterType="Member" resultType="_int">
+		select count(*) from member where id = #{id}
+	</select>
+
+</mapper>
